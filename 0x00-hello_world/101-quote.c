@@ -4,7 +4,7 @@
 /**
  * main - run all functions
  *
- * Description: Print out statement w/o printf/puts
+ * Description: Change standard error message
  * Return: Return 1 and exit
  */
 int main(void)
