@@ -22,10 +22,7 @@ int main(void)
 				if (f == s || f == t || s == t)
 				{
 				}
-				else if (f > s || f > t)
-				{
-				}
-				else if (s > t)
+				else if (f > s || f > t || s > t)
 				{
 				}
 				else
