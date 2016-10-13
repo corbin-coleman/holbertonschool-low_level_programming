@@ -25,7 +25,7 @@ int main(void)
 			{
 				putchar(f);
 				putchar(s);
-				if (s == '9' && f == '9')
+				if (s == '9' && f == '8')
 				{
 					break;
 				}
