@@ -22,7 +22,7 @@ void print_times_table(int n)
 				one = mult % 10;
 				ten = mult % 100 / 10;
 				hund = mult / 100;
-				if (hund == 0)
+				if (hund == 0 && y != 0)
 				{
 					_putchar(' ');
 					if (ten == 0)
@@ -30,7 +30,7 @@ void print_times_table(int n)
 					else
 						_putchar(ten + '0');
 				}
-				else
+				else if (hund != 0)
 				{
 					_putchar(hund + '0');
 					_putchar(ten + '0');
