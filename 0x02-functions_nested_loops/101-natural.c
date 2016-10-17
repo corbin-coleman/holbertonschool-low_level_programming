@@ -7,16 +7,16 @@
  */
 int main(void)
 {
-	int n, x;
+	int n, sum;
 
 	while (n < 1024)
 	{
 		if ((n % 3) == 0 || (n % 5) == 0)
 		{
-			x += n;
+			sum += n;
 		}
 		n++;
 	}
-	printf("%d\n", n);
+	printf("%d\n", sum);
 	return (0);
 }
