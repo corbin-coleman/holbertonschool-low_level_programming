@@ -13,11 +13,11 @@ int main(void)
 	f = 0;
 	s = 1;
 	c = 0;
-	while (c <= 50)
+	while (c < 50)
 	{
 		sum = f + s;
 		printf("%ld", sum);
-		if (c != 50)
+		if (c != 49)
 		{
 			printf(", ");
 		}
