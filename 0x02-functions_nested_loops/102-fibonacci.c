@@ -7,23 +7,23 @@
  */
 int main(void)
 {
-	long long int f, s, t, p;
+	long int f, s, c, sum;
 
-	p = 0;
+	sum = 0;
 	f = 0;
 	s = 1;
-	t = 0;
-	while (t <= 50)
+	c = 0;
+	while (c <= 50)
 	{
-		p = f + s;
-		printf("%lld", p);
-		if (t != 50)
+		sum = f + s;
+		printf("%ld", sum);
+		if (c != 50)
 		{
 			printf(", ");
 		}
 		f = s;
-		s = p;
-		t++;
+		s = sum;
+		c++;
 	}
 	printf("\n");
 	return (0);
