@@ -26,7 +26,7 @@ int main(void)
 	halfbf = f % 1000000000;
 	halfas = s / 1000000000;
 	halfbs = s % 1000000000;
-	while (c < 97)
+	while (c < 98)
 	{
 		printfhalf = halfaf + halfas;
 		printshalf = halfbf + halfbs;
@@ -36,7 +36,7 @@ int main(void)
 			printfhalf++;
 		}
 		printf("%ld%ld", printfhalf, printshalf);
-		if (c == 96)
+		if (c == 97)
 			break;
 		printf(", ");
 		halfaf = halfas;
