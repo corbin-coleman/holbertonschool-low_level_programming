@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+/**
+ * main - Print 1-100, replace multiples of 3/5/both w/ Fizz/Buzz/FizzBuzz
+ *
+ * Return: 0
+ */
 int main(void)
 {
 	int n = 1;
