@@ -8,23 +8,24 @@
  */
 void print_number(int n)
 {
-	int hn;
+	long hn;
+	long n2 = n;
 
-	if (n < 0)
+	if (n2 < 0)
 	{
 		_putchar('-');
-		n *= - 1;
+		n2 *= -1;
 	}
-	if (n / 100000 != 0)
+	if (n2 / 100000 != 0)
 	{
-		hn = n / 100000;
+		hn = n2 / 100000;
 		_putchar(hn / 10000 % 10 + '0');
 		_putchar(hn / 1000 % 10 + '0');
 		_putchar(hn / 100 % 10 + '0');
 		_putchar(hn / 10 % 10 + '0');
 		_putchar(hn % 10 + '0');
 	}
-		hn = n % 100000;
+		hn = n2 % 100000;
 		if (hn / 10000 % 10 != 0)
 		{
 			_putchar(hn / 10000 % 10 + '0');
