@@ -1,5 +1,5 @@
 /**
- * _isupper.c - Find if a given letter is upper case
+ * _isupper - Find if a given letter is upper case
  * @c: the given letter
  *
  * Return: Return 1 if c is uppercase, 0 if otherwise
