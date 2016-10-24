@@ -1,6 +1,6 @@
 /**
  * _strlen - Return the length of a given string
- * @s - Pointer to the string
+ * @s: Pointer to the string
  *
  * Return: 0
  */
