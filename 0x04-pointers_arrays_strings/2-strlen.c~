@@ -1,0 +1,17 @@
+/**
+ * _strlen - Return the length of a given string
+ * @s - Pointer to the string
+ *
+ * Return: 0
+ */
+int _strlen(char *s)
+{
+	int len;
+
+	len = 0;
+	for (int i = 0; i < *(s + i); i++)
+	{
+		len++;
+	}
+	return (len);
+}
