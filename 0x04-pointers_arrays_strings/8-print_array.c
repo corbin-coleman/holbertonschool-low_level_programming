@@ -1,5 +1,5 @@
 #include "holberton.h"
-
+#include <stdio.h>
 /**
  * print_array - Print a number of items in an array of integers
  * @a: The array to print
@@ -9,9 +9,15 @@
  */
 void print_array(int *a, int n)
 {
-	char num[10000];
 	int i;
 
 	i = 0;
-	while
+	while (i < n)
+	{
+		printf("%d", *(a + i));
+		if (i != n - 1)
+			printf(", ");
+		i++;
+	}
+	putchar('\n');
 }
