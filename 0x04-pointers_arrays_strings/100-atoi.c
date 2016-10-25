@@ -6,15 +6,13 @@
  */
 int _atoi(char *s)
 {
-	int i, n, m, p;
+	int i, n, m;
 
-	i = n = m = p = 0;
+	i = n = m = 0;
 	while (*(s + i) != '\0')
 	{
 		if (*(s + i) == '-')
 			m++;
-		else if (*(s + i) == '+')
-			p++;
 		if (*(s + i) >= '0' && *(s + i) <= '9')
 		{
 			while (*(s + i) >= '0' && *(s + i) <= '9')
@@ -22,7 +20,7 @@ int _atoi(char *s)
 				n = (n * 10) + (*(s + i) - '0');
 				i++;
 			}
-			if (m > p)
+			if (m % 2 != 0)
 				n *= -1;
 			return (n);
 		}
