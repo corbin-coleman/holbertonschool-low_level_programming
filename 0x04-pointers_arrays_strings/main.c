@@ -8,11 +8,11 @@
  */
 int main(void)
 {
-	char *str;
+	char s1[98];
+	char *p;
 
-	str = "0123456789";
-	puts_half(str);
-	str = "01234";
-	puts_half(str);
+	p = _strcpy(s1, "First, solve the problem. Then, write the code\n");
+	printf("%s", s1);
+	printf("%s", p);
 	return (0);
 }
