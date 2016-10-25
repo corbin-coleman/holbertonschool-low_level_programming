@@ -8,13 +8,23 @@
  */
 int main(void)
 {
-	int array[5];
+	int n;
 
-	array[0] = 98;
-	array[1] = 402;
-	array[2] = -198;
-	array[3] = 298;
-	array[4] = -1024;
-	print_array(array, 5);
+	n = _atoi("98");
+	printf("%d\n", n);
+	n = _atoi("-402");
+	printf("%d\n", n);
+	n = _atoi("          ------++++++-----+++++--98");
+	printf("%d\n", n);
+	n = _atoi("214748364");
+	printf("%d\n", n);
+	n = _atoi("0");
+	printf("%d\n", n);
+	n = _atoi("Suite 402");
+	printf("%d\n", n);
+	n = _atoi("         +      +    -    -98 Battery Street; San Francisco, CA 94111 - USA             ");
+	printf("%d\n", n);
+	n = _atoi("---++++ -++ Sui - te -   402 #cisfun :)");
+	printf("%d\n", n);
 	return (0);
 }
