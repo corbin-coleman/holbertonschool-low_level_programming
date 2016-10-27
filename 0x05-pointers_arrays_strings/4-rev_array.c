@@ -1,5 +1,5 @@
 /**
- * rev_array - Reverse contents of array
+ * reverse_array - Reverse contents of array
  * @a: The array to reverse
  * @n: The size of the array
  */
