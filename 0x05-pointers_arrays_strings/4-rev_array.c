@@ -1,3 +1,4 @@
+#include "holberton.h"
 /**
  * reverse_array - Reverse contents of array
  * @a: The array to reverse
