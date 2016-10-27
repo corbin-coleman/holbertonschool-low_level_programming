@@ -2,6 +2,8 @@
  * reverse_array - Reverse contents of array
  * @a: The array to reverse
  * @n: The size of the array
+ *
+ * Return: Nothing
  */
 void reverse_array(int *a, int n)
 {
