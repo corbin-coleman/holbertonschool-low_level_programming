@@ -18,7 +18,7 @@ void print_buffer(char *b, int size)
 		{
 			printf("%08x: ", i);
 			j = 0;
-			while (j < 10 )
+			while (j < 10)
 			{
 				if (j % 2 == 0 && j > 0)
 					printf(" ");
@@ -32,10 +32,10 @@ void print_buffer(char *b, int size)
 			j = 0;
 			while (j < 10)
 			{
+				if (j + i > size - 1)
+					break;
 				if (b[j + i] >= ' ' && b[j + i] <= '~')
 					putchar(b[j + i]);
-				else if (j + i > size - 1)
-					break;
 				else
 					putchar('.');
 				j++;
