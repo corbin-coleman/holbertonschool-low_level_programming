@@ -21,5 +21,11 @@ char *_strchr(char *s, char c)
 		}
 		i++;
 	}
-	return ('\0');
+	if (s == c)
+	{
+		f = &s;
+		return (f);
+	}
+	else
+		return ('\0');
 }
