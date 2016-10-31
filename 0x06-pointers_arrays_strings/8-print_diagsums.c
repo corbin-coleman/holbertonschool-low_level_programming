@@ -23,16 +23,5 @@ void print_diagsums(int *a, int size)
 			sum1 += *(a + i);
 		i++;
 	}
-	/*while (i < len)
-	{
-		sum1 += *(a + i);
-		i += size + 1;
-	}
-	i = size - 1;
-	while (i < len - 1)
-	{
-		sum2 += *(a + i);
-		i += size - 1;
-		}*/
 	printf("%d, %d\n", sum1, sum2);
 }
