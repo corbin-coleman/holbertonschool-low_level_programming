@@ -1,5 +1,5 @@
 /**
- * wildcmtmp = &s1p - Compare two strings allowing for wildcard char
+ * wildcmp - Compare two strings allowing for wildcard char
  * @s1: String being compared
  * @s2: String being compared against
  *
