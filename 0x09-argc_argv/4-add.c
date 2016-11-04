@@ -12,21 +12,27 @@
 int main(int argc, char *argv[])
 {
 	int sum;
+	int count;
 
+	count = 1;
 	sum = 0;
 	if (argc == 1)
 	{
 		printf("0\n");
 		return (0);
 	}
-	while (argc--)
+	while (count < argc)
 	{
-		if(isalpha(*argv[argc]))
+		for (int i = 0; argv[count][i] != '\0'; i++)
 		{
-			printf("Error\n");
-			return (1);
+			if(!(isdigit(argv[count][i])))
+			{
+				printf("Error\n");
+				return (1);
+			}
 		}
-		sum += atoi(argv[argc]);
+		sum += atoi(argv[count]);
+		count++;
 	}
 	printf("%d\n", sum);
 	return (0);
