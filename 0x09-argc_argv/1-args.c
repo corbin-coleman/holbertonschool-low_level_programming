@@ -2,6 +2,8 @@
 
 /**
  * main - print the number of arguments received
+ * @argc: Arg count
+ * @argv: Array of arg strings
  *
  * Return: 0 for successful exit
  */
