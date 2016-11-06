@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
 {
 	int sum;
 	int count;
+	int i;
 
 	count = 1;
 	sum = 0;
@@ -23,7 +24,7 @@ int main(int argc, char *argv[])
 	}
 	while (count < argc)
 	{
-		for (int i = 0; argv[count][i] != '\0'; i++)
+		for (i = 0; argv[count][i] != '\0'; i++)
 		{
 			if (!(isdigit(argv[count][i])))
 			{
