@@ -9,12 +9,10 @@
  */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int l1, l2, tmpl, rl;
-	int i, sum, num1, num2, carry;
+	int l1, l2, tmpl, rl, i, sum, num1, num2, carry;
 	char tmp[10000];
 
-	rl = 0;
-	i = l1 = l2 = sum = num1 = num2 = carry = 0;
+	rl = i = l1 = l2 = sum = num1 = num2 = carry = 0;
 	while (n1[l1] != '\0')
 		l1++;
 	while (n2[l2] != '\0')
@@ -25,8 +23,7 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	l2--;
 	while (i <= l1 || i <= l2)
 	{
-		num1 = 0;
-		num2 = 0;
+		num1 = num2 = 0;
 		if (i <= l1)
 			num1 = n1[l1 - i] - '0';
 		if (i <= l2 && (l2 - i) >= 0)
@@ -46,11 +43,9 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	if (carry > 0)
 	{
 		r[i] = carry + '0';
-		rl++;
+		r[i + 1] = '\0';
 	}
-	i = 0;
-	tmpl = 0;
-	rl--;
+	i = tmpl = 0;
 	while (i <= rl)
 	{
 		tmp[i] = r[rl - i];
@@ -60,6 +55,10 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	i = 0;
 	while (i < tmpl)
 	{
+		if (r[i] == '\0')
+		{
+			break;
+		}
 		r[i] = tmp[i];
 		i++;
 	}
