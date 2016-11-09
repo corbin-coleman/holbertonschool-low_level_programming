@@ -10,8 +10,10 @@
 char *_strdup(char *str)
 {
 	char *nstr;
-	int i, len;
+	unsigned int i, len;
 
+	if (str == NULL)
+		return (NULL);
 	i = len = 0;
 	while (str[len] != '\0')
 	{
