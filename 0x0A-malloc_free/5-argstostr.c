@@ -26,12 +26,11 @@ char *argstostr(int ac, char **av)
 		len++;
 		i++;
 	}
-	len++;
-	str = malloc(len * sizeof(*str));
+	str = malloc(len * sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	i = k = 0;
-	while (k < len)
+	while (i < ac)
 	{
 		j = 0;
 		while (av[i][j] != 0)
