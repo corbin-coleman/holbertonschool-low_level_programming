@@ -97,6 +97,7 @@ char **strtow(char *str)
 				free(nstr[i]);
 				i--;
 			}
+			free(nstr);
 			return (NULL);
 		}
 		while (str[j] != '\0' && i == cur_words)
@@ -119,5 +120,6 @@ char **strtow(char *str)
 		}
 	}
 	nstr[i] = NULL;
+	free(sizes);
 	return (nstr);
 }
