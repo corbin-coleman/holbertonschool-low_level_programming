@@ -27,6 +27,7 @@ int word_count(char *str)
 /**
  * find_words_len - Find length of all the words in a string
  * @str: String to check length of words in
+ * @words: Number of words
  *
  * Return: Combined length of words
  */
@@ -50,7 +51,6 @@ int *find_words_len(char *str, int words)
 				i++;
 			}
 			len++;
-
 			sizes[word] = len;
 			word++;
 		}
@@ -68,10 +68,9 @@ int *find_words_len(char *str, int words)
 char **strtow(char *str)
 {
 	char **nstr;
-	int words, i, j, k, cur_words;
-	int *sizes;
+	int words, i, j, k, cur_words, *sizes;
 
-	if (str == NULL || str == '\0')
+	if (str == NULL || *str == '\0')
 		return (NULL);
 	words = word_count(str);
 	sizes = malloc(words * sizeof(int));
@@ -79,23 +78,17 @@ char **strtow(char *str)
 		return (NULL);
 	sizes = find_words_len(str, words);
 	nstr = malloc((words + 1) * sizeof(char *));
-	if (sizes == NULL)
-		return (NULL);
 	if (nstr == NULL)
 		return (NULL);
-	i = j = 0;
-	while (i < words)
+	i = j = k = 0;
+	while (i < words && str[j] != '\0')
 	{
 		cur_words = i;
 		nstr[i] = malloc(sizes[i] + sizeof(char));
 		if (nstr[i] == NULL)
 		{
-			i--;
-			while (i >= 0)
-			{
-				free(nstr[i]);
-				i--;
-			}
+			for (i = i - 1; i >= 0; i--)
+				free(nstr[i--]);
 			free(nstr);
 			return (NULL);
 		}
@@ -103,22 +96,15 @@ char **strtow(char *str)
 		{
 			if (str[j] != ' ')
 			{
-				k = 0;
-				while (str[j] != ' ')
+				while (str[j] != '\0' && str[j] != ' ')
 				{
-					if (str[j + 1] == '\0')
-						break;
-					nstr[i][k] = str[j];
-					j++;
-					k++;
+					nstr[i][k] = str[j]; j++; k++;
 				}
-				nstr[i][k] = '\0';
-				i++;
+				nstr[i][k] = '\0'; i++; k = 0;
 			}
 			j++;
 		}
 	}
-	nstr[i] = NULL;
-	free(sizes);
+	nstr[i] = NULL;	free(sizes);
 	return (nstr);
 }
