@@ -22,7 +22,7 @@ void print_str(char *str)
 	int i;
 
 	i = 0;
-	while(str[i] != '\0')
+	while (str[i] != '\0')
 	{
 		_putchar(str[i]);
 		i++;
@@ -144,8 +144,10 @@ int _isstrdigit(char *str)
  * @num2: The second number, as a string
  * @len1: The length of the first string
  * @len2: The length of the second string
+ *
+ * Return: Pointer to char array
  */
-void *mul(char *num1, char *num2, int len1, int len2)
+char *mul(char *num1, char *num2, int len1, int len2)
 {
 	int i, prod, j, carry, k, digit, reslen;
 	char *res;
@@ -158,8 +160,7 @@ void *mul(char *num1, char *num2, int len1, int len2)
 		exit(98);
 	}
 	res = init(res, reslen);
-	i = len2 - 1;
-	carry = k = digit = 0;
+	i = len2 - 1; carry = k = digit = 0;
 	while (i >= 0 && k < (len1 + len2))
 	{
 		j = len1 - 1;
@@ -179,13 +180,9 @@ void *mul(char *num1, char *num2, int len1, int len2)
 			else
 				res[k] += prod;
 			res[k + 1] += carry;
-			k++;
-			if (j == 0)
-				break;
-			j--;
+			k++; j--;
 		}
-		i--;
-		digit++;
+		i--; digit++;
 	}
 	if (res[k] == '0')
 		res[k] = '\0';
