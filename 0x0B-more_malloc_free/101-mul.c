@@ -30,17 +30,38 @@ void print_str(char *str)
 	_putchar('\n');
 }
 
+
+/**
+ * print_err - Print the word "Error"
+ */
+void print_err(void)
+{
+	_putchar('E');
+	_putchar('r');
+	_putchar('r');
+	_putchar('o');
+	_putchar('r');
+	_putchar('\n');
+}
+
+
 /**
  * rev_string - Reverse the given string
  * @s: The string to reverse
- *
+ * @size: Size of string to revers;
  * Return: Nothing
  */
-void rev_string(char *s)
+void rev_string(char *s, int size)
 {
-	char str[10000];
+	char *str;
 	int i, r;
 
+	str = malloc(size);
+	if (str == NULL)
+	{
+		print_err();
+		exit(98);
+	}
 	i = 0;
 	while (*(s + i) != 0)
 	{
@@ -55,19 +76,7 @@ void rev_string(char *s)
 		r--;
 		i++;
 	}
-}
-
-/**
- * print_err - Print the word "Error"
- */
-void print_err(void)
-{
-	_putchar('E');
-	_putchar('r');
-	_putchar('r');
-	_putchar('o');
-	_putchar('r');
-	_putchar('\n');
+	free(str);
 }
 
 /**
@@ -137,16 +146,17 @@ int _isstrdigit(char *str)
  */
 void mul(char *num1, char *num2, int len1, int len2)
 {
-	int i, prod, j, carry, k, digit;
+	int i, prod, j, carry, k, digit, reslen;
 	char *res;
 
-	res = malloc((len1 + len2) * sizeof(char));
+	reslen = len1 + len2 + 1;
+	res = malloc(reslen * sizeof(char));
 	if (res == NULL)
 	{
 		print_err();
 		exit(98);
 	}
-	res = init(res, (len1 + len2));
+	res = init(res, reslen);
 	i = len2 - 1;
 	carry = k = digit = 0;
 	while (i >= 0 && k < (len1 + len2))
@@ -176,7 +186,9 @@ void mul(char *num1, char *num2, int len1, int len2)
 	}
 	if (res[k] == '0')
 		res[k] = '\0';
-	rev_string(res);
+	else
+		res[k + 1] = '\0';
+	rev_string(res, reslen);
 	print_str(res);
 	free(res);
 }
