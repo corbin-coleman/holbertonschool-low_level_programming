@@ -70,12 +70,13 @@ void rev_string(char *s, int size)
 	}
 	r = i - 1;
 	i = 0;
-	while (r >= 0)
+	while (r > 0)
 	{
 		*(s + r) = str[i];
 		r--;
 		i++;
 	}
+	*(s + r) = str[i];
 	free(str);
 }
 
@@ -85,9 +86,9 @@ void rev_string(char *s, int size)
  *
  * Return: Length of the string
  */
-int str_len(char *str)
+unsigned int str_len(char *str)
 {
-	int i;
+	unsigned int i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -144,7 +145,7 @@ int _isstrdigit(char *str)
  * @len1: The length of the first string
  * @len2: The length of the second string
  */
-void mul(char *num1, char *num2, int len1, int len2)
+void *mul(char *num1, char *num2, int len1, int len2)
 {
 	int i, prod, j, carry, k, digit, reslen;
 	char *res;
@@ -179,6 +180,8 @@ void mul(char *num1, char *num2, int len1, int len2)
 				res[k] += prod;
 			res[k + 1] += carry;
 			k++;
+			if (j == 0)
+				break;
 			j--;
 		}
 		i--;
@@ -188,9 +191,7 @@ void mul(char *num1, char *num2, int len1, int len2)
 		res[k] = '\0';
 	else
 		res[k + 1] = '\0';
-	rev_string(res, reslen);
-	print_str(res);
-	free(res);
+	return (res);
 }
 
 /**
@@ -202,7 +203,8 @@ void mul(char *num1, char *num2, int len1, int len2)
  */
 int main(int argc, char *argv[])
 {
-	int len1, len2;
+	int len1, len2, anslen;
+	char *ans;
 
 	if (argc != 3)
 	{
@@ -217,8 +219,12 @@ int main(int argc, char *argv[])
 	len1 = str_len(argv[1]);
 	len2 = str_len(argv[2]);
 	if (len1 > len2)
-		mul(argv[1], argv[2], len1, len2);
+		ans = mul(argv[1], argv[2], len1, len2);
 	else
-		mul(argv[2], argv[1], len2, len1);
+		ans = mul(argv[2], argv[1], len2, len1);
+	anslen = str_len(ans);
+	rev_string(ans, anslen);
+	print_str(ans);
+	free(ans);
 	return (0);
 }
