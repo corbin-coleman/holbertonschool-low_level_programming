@@ -32,7 +32,6 @@ void print_err(void)
 	_putchar('\n');
 }
 
-
 /**
  * rev_string - Reverse the given string
  * @s: The string to reverse
@@ -195,6 +194,12 @@ int main(int argc, char *argv[])
 	{
 		print_err();
 		exit(98);
+	}
+	if (argv[1][0] == '0' || argv[2][0] == '0')
+	{
+		_putchar('0');
+		_putchar('\n');
+		return (0);
 	}
 	if (_isstrdigit(argv[1]) == 0 || _isstrdigit(argv[2]) == 0)
 	{
