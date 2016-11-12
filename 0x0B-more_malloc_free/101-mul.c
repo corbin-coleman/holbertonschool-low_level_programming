@@ -30,6 +30,7 @@ void print_err(void)
 	_putchar('o');
 	_putchar('r');
 	_putchar('\n');
+	exit(98);
 }
 
 /**
@@ -45,10 +46,7 @@ void rev_string(char *s, int size)
 
 	str = malloc(size);
 	if (str == NULL)
-	{
 		print_err();
-		exit(98);
-	}
 	i = 0;
 	while (*(s + i) != 0)
 	{
@@ -142,10 +140,7 @@ char *mul(char *num1, char *num2, int len1, int len2)
 	reslen = len1 + len2 + 1;
 	res = malloc(reslen * sizeof(char));
 	if (res == NULL)
-	{
 		print_err();
-		exit(98);
-	}
 	res = init(res, reslen);
 	i = len2 - 1; carry = k = digit = 0;
 	while (i >= 0 && k < (len1 + len2))
@@ -179,6 +174,82 @@ char *mul(char *num1, char *num2, int len1, int len2)
 }
 
 /**
+ * remove_zeroes - Remove zeroes from num
+ * @str: String to remove zeroes from
+ * @len: Length of string
+ *
+ * Return: Pointer to new string
+ */
+char *remove_zeroes(char *str, int len)
+{
+	int i, j;
+	char *nstr;
+
+	i = 0;
+	while (str[i] == '0' && str[i] != '\0')
+	{
+		i++;
+	}
+	if (len - i == 0)
+	{
+		nstr = malloc(2 * sizeof(*nstr));
+		nstr[0] = '0';
+		nstr[1] = '\0';
+		return (nstr);
+	}
+	else
+		len -= i;
+	nstr = malloc(len * sizeof(*nstr) + 1);
+	j = 0;
+	while (j < len)
+	{
+		nstr[j] = str[i];
+		j++;
+		i++;
+	}
+	nstr[j] = '\0';
+	return (nstr);
+}
+
+/**
+ * check_zero - Check to see if the number is zero or if zeroes need to be gone
+ * @str: Str to check for zeroes
+ * @len: len of string
+ *
+ * Return: Pointer to new num string
+ */
+char *check_zero(char *str, int len)
+{
+	char *num;
+	int i;
+
+	if (str[0] == '0' && len != 1)
+		num = remove_zeroes(str, len);
+	else if (str[0] == '0' && len == 1)
+	{
+		num = malloc(len + 1);
+		if (num == NULL)
+			print_err();
+		num[0] = '0';
+		num[1] = '\0';
+	}
+	else
+	{
+		num = malloc(len + 1);
+		if (num == NULL)
+			print_err();
+		i = 0;
+		while (i < len)
+		{
+			num[i] = str[i];
+			i++;
+		}
+		num[i] = '\0';
+	}
+	return (num);
+}
+
+/**
  * main - Run all necessary functions to multply two strings as numbers
  * @argc: Number of args
  * @argv: Value of args
@@ -188,18 +259,12 @@ char *mul(char *num1, char *num2, int len1, int len2)
 int main(int argc, char *argv[])
 {
 	int len1, len2, anslen;
-	char *ans;
+	char *ans, *num1, *num2;
 
 	if (argc != 3)
 	{
 		print_err();
 		exit(98);
-	}
-	if (argv[1][0] == '0' || argv[2][0] == '0')
-	{
-		_putchar('0');
-		_putchar('\n');
-		return (0);
 	}
 	if (_isstrdigit(argv[1]) == 0 || _isstrdigit(argv[2]) == 0)
 	{
@@ -208,13 +273,29 @@ int main(int argc, char *argv[])
 	}
 	len1 = str_len(argv[1]);
 	len2 = str_len(argv[2]);
+	num1 = check_zero(argv[1], len1);
+	if (*num1 == '0')
+	{
+		_putchar('0');
+		_putchar('\n');
+		return (0);
+	}
+	num2 = check_zero(argv[2], len2);
+	if (*num2 == '0')
+	{
+		_putchar('0');
+		_putchar('\n');
+		return (0);
+	}
+	len1 = str_len(num1);
+	len2 = str_len(num2);
 	if (len1 > len2)
-		ans = mul(argv[1], argv[2], len1, len2);
+		ans = mul(num1, num2, len1, len2);
 	else
-		ans = mul(argv[2], argv[1], len2, len1);
+		ans = mul(num2, num1, len2, len1);
 	anslen = str_len(ans);
 	rev_string(ans, anslen);
 	print_str(ans);
-	free(ans);
+	free(ans); free(num1); free(num2);
 	return (0);
 }
