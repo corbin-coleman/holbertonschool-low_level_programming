@@ -11,7 +11,6 @@
  */
 int main(int argc, char *argv[])
 {
-	int (*ptr)(int, char**);
 	char *add;
 	int i, bytes;
 
@@ -25,8 +24,7 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		exit(2);
 	}
-	ptr = main;
-	add = (char *)&ptr;
+	add = (char *)&main;
 	bytes = atoi(argv[1]);
 	i = 0;
 	while (i < bytes - 1)
