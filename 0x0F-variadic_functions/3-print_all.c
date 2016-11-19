@@ -6,46 +6,42 @@
 /**
  * print_string - Print the string
  * @args: Where the string is
- * @sep: Seperator for strings
  */
-void print_string(va_list args, char *sep)
+void print_string(va_list args)
 {
 	char *string;
 
 	string = va_arg(args, char *);
 	if (string == NULL)
 		string = "(nil)";
-	printf("%s%s", sep, string);
+	printf("%s",  string);
 }
 
 /**
  * print_char - Print the char
  * @args: Where the char is
- * @sep: Seperator for strings
  */
-void print_char(va_list args, char *sep)
+void print_char(va_list args)
 {
-	printf("%s%c", sep, va_arg(args, int));
+	printf("%c", va_arg(args, int));
 }
 
 /**
  * print_int - Print the int
  * @args: Where the int is
- * @sep: Seperator for strings
  */
-void print_int(va_list args, char *sep)
+void print_int(va_list args)
 {
-	printf("%s%d", sep, va_arg(args, int));
+	printf("%d", va_arg(args, int));
 }
 
 /**
  * print_float - Print the float
  * @args: Where the float is
- * @sep: Seperator for strings
  */
-void print_float(va_list args, char *sep)
+void print_float(va_list args)
 {
-	printf("%s%f", sep, va_arg(args, double));
+	printf("%f", va_arg(args, double));
 }
 
 /**
@@ -74,6 +70,7 @@ void print_all(const char * const format, ...)
 		{
 			if (*print_form[j].c == format[i])
 			{
+				printf("%s", sep);
 				print_form[j].f(args, sep);
 				sep = ", ";
 			}
