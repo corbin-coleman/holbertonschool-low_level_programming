@@ -1,38 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include "variadic_functions.h"
 
-/**
- * format_len - Get the len of valid chars in formatter
- * @format: Formatter string
- *
- * Return: Length
- */
-int format_len(const char * const format)
+void print_string(va_list args)
 {
-	int i, len;
+	char *string;
 
-	i = len = 0;
-	while (format[i] != '\0')
-	{
-		switch (format[i])
-		{
-		case 'c':
-			len++;
-			break;
-		case 'i':
-			len++;
-			break;
-		case 'f':
-			len++;
-			break;
-		case 's':
-			len++;
-			break;
-		}
-		i++;
-	}
-	return (len);
+	string = va_arg(args, char *);
+	if (string == NULL)
+		string = "(nil)";
+	printf("%s", string);
+}
+
+void print_char(va_list args)
+{
+	printf("%c", va_arg(args, int));
+}
+
+void print_int(va_list args)
+{
+	printf("%d", va_arg(args, int));
+}
+
+void print_float(va_list args)
+{
+	printf("%f", va_arg(args, double));
 }
 
 /**
@@ -41,43 +34,31 @@ int format_len(const char * const format)
  */
 void print_all(const char * const format, ...)
 {
-	va_list list;
-	char *word;
-	int i, len, print, lenc;
+	va_list args;
+	print_form_t print_form[] = {
+		{"c", print_char},
+		{"i", print_int},
+		{"f", print_float},
+		{"s", print_string}
+	};
+	int i, j;
 
-	len = format_len(format);
-	i = lenc = 0;
-	va_start(list, format);
+	va_start(args, format);
+	i = 0;
 	while (format[i] != '\0')
 	{
-		print = 0;
-		switch (format[i])
+		j = 0;
+		while (j < 4)
 		{
-		case 'c':
-			printf("%c", (char)va_arg(list, int));
-			lenc++;	print = 1;
-			break;
-		case 'i':
-			printf("%d", va_arg(list, int));
-			lenc++;	print = 1;
-			break;
-		case 'f':
-			printf("%f", va_arg(list, double));
-			lenc++; print = 1;
-			break;
-		case 's':
-			word = va_arg(list, char *);
-			if (word == NULL)
-				word = "(nil)";
-			printf("%s", word);
-			lenc++;
-			print = 1;
-			break;
+			if (*print_form[j].c == format[i])
+			{
+				print_form[j].f(args);
+				printf(", ");
+			}
+			j++;
 		}
-		if (print == 1 && format[i + 1] != '\0' && lenc != len)
-			printf(", ");
 		i++;
 	}
 	printf("\n");
-	va_end(list);
+	va_end(args);
 }
