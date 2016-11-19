@@ -54,7 +54,7 @@ void print_all(const char * const format, ...)
 		switch (format[i])
 		{
 		case 'c':
-			printf("%c", va_arg(list, int));
+			printf("%c", (char)va_arg(list, int));
 			lenc++;	print = 1;
 			break;
 		case 'i':
