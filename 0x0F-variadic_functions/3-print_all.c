@@ -2,6 +2,12 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
+/**
+ * format_len - Get the len of valid chars in formatter
+ * @format: Formatter string
+ *
+ * Return: Length
+ */
 int format_len(const char * const format)
 {
 	int i, len;
