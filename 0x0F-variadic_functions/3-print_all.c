@@ -68,9 +68,8 @@ void print_all(const char * const format, ...)
 		case 's':
 			word = va_arg(list, char *);
 			if (word == NULL)
-				printf("(nil)");
-			else
-				printf("%s", word);
+				word = "(nil)";
+			printf("%s", word);
 			lenc++;
 			print = 1;
 			break;
