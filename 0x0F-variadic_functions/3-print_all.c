@@ -6,6 +6,7 @@
 /**
  * print_string - Print the string
  * @args: Where the string is
+ * @sep: Seperator for strings
  */
 void print_string(va_list args, char *sep)
 {
@@ -20,6 +21,7 @@ void print_string(va_list args, char *sep)
 /**
  * print_char - Print the char
  * @args: Where the char is
+ * @sep: Seperator for strings
  */
 void print_char(va_list args, char *sep)
 {
@@ -29,6 +31,7 @@ void print_char(va_list args, char *sep)
 /**
  * print_int - Print the int
  * @args: Where the int is
+ * @sep: Seperator for strings
  */
 void print_int(va_list args, char *sep)
 {
@@ -38,6 +41,7 @@ void print_int(va_list args, char *sep)
 /**
  * print_float - Print the float
  * @args: Where the float is
+ * @sep: Seperator for strings
  */
 void print_float(va_list args, char *sep)
 {
