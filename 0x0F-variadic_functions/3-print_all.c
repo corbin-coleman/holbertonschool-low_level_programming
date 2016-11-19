@@ -7,41 +7,41 @@
  * print_string - Print the string
  * @args: Where the string is
  */
-void print_string(va_list args)
+void print_string(va_list args, char *sep)
 {
 	char *string;
 
 	string = va_arg(args, char *);
 	if (string == NULL)
 		string = "(nil)";
-	printf("%s", string);
+	printf("%s%s", sep, string);
 }
 
 /**
  * print_char - Print the char
  * @args: Where the char is
  */
-void print_char(va_list args)
+void print_char(va_list args, char *sep)
 {
-	printf("%c", va_arg(args, int));
+	printf("%s%c", sep, va_arg(args, int));
 }
 
 /**
  * print_int - Print the int
  * @args: Where the int is
  */
-void print_int(va_list args)
+void print_int(va_list args, char *sep)
 {
-	printf("%d", va_arg(args, int));
+	printf("%s%d", sep, va_arg(args, int));
 }
 
 /**
  * print_float - Print the float
  * @args: Where the float is
  */
-void print_float(va_list args)
+void print_float(va_list args, char *sep)
 {
-	printf("%f", va_arg(args, double));
+	printf("%s%f", sep, va_arg(args, double));
 }
 
 /**
@@ -51,6 +51,7 @@ void print_float(va_list args)
 void print_all(const char * const format, ...)
 {
 	va_list args;
+	char *sep;
 	print_form_t print_form[] = {
 		{"c", print_char},
 		{"i", print_int},
@@ -61,14 +62,16 @@ void print_all(const char * const format, ...)
 
 	va_start(args, format);
 	i = 0;
-	while (format[i] != '\0')
+	sep = "";
+	while (format != NULL && format[i] != '\0')
 	{
 		j = 0;
 		while (j < 4)
 		{
 			if (*print_form[j].c == format[i])
 			{
-				print_form[j].f(args);
+				print_form[j].f(args, sep);
+				sep = ", ";
 			}
 			j++;
 		}
