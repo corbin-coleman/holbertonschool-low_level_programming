@@ -3,6 +3,10 @@
 #include <stdarg.h>
 #include "variadic_functions.h"
 
+/**
+ * print_string - Print the string
+ * @args: Where the string is
+ */
 void print_string(va_list args)
 {
 	char *string;
@@ -13,16 +17,28 @@ void print_string(va_list args)
 	printf("%s", string);
 }
 
+/**
+ * print_char - Print the char
+ * @args: Where the char is
+ */
 void print_char(va_list args)
 {
 	printf("%c", va_arg(args, int));
 }
 
+/**
+ * print_int - Print the int
+ * @args: Where the int is
+ */
 void print_int(va_list args)
 {
 	printf("%d", va_arg(args, int));
 }
 
+/**
+ * print_float - Print the float
+ * @args: Where the float is
+ */
 void print_float(va_list args)
 {
 	printf("%f", va_arg(args, double));
@@ -53,7 +69,6 @@ void print_all(const char * const format, ...)
 			if (*print_form[j].c == format[i])
 			{
 				print_form[j].f(args);
-				printf(", ");
 			}
 			j++;
 		}
