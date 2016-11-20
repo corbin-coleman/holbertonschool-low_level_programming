@@ -2,7 +2,7 @@
 #define VARIADIC_FUNCS
 #define FORMAT(f) ("%"#f)
 /**
- * print_form - Define a struct to figure out how to print
+ * struct print_form - Define a struct to figure out how to print
  * @c: Character to check for
  * @f: Pointer to function to call
  */
