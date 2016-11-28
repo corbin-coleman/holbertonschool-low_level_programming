@@ -1,10 +1,15 @@
 global main
-extern puts
+extern printf
 
 	section .text
 main:
-	mov rdi, message
-	call puts
+	push rbp
+	mov rdi, format
+	mov rsi, message
+	mov rax, 0
+	call printf
+	pop rbp
+	mov rax, 0
 	ret
-message:
-	db "Hello, Holberton", 0
+message: db "Hello, Holberton", 0
+format:	db "%s", 10, 0
