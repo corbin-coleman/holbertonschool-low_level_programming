@@ -1,5 +1,5 @@
-#include "lists.h"
 #include <stdlib.h>
+#include "lists.h"
 
 /**
  * add_nodeint - Add a listint_t node to a list
