@@ -60,12 +60,10 @@ size_t print_listint_safe(const listint_t *head)
 		checker = newhead;
 		while (checker != NULL)
 		{
-			if (head->next == checker->address)
+			if (head == checker->address)
 			{
-				head = head->next;
 				printf("-> [%p] %d\n", (void *)head, head->n);
 				free_listadd(newhead);
-				newhead = NULL;
 				return (count);
 			}
 			checker = checker->next;
@@ -76,6 +74,5 @@ size_t print_listint_safe(const listint_t *head)
 		count++;
 	}
 	free_listadd(newhead);
-	newhead = NULL;
 	return (count);
 }
