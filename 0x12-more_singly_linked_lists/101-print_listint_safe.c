@@ -15,13 +15,28 @@ listadd_t *add_nodeaddress(listadd_t **head, const listint_t *address)
 
 	new = malloc(sizeof(listint_t));
 	if (new == NULL)
-		return (NULL);
+		exit(98);
 	new->address = address;
 	new->next = *head;
 	*head = new;
 	return (new);
 }
 
+/**
+ * free_listadd - Free a list
+ * @head: Pointer to the start of the list
+ */
+void free_listadd(listadd_t *head)
+{
+	listadd_t *killnode;
+
+	while (head != NULL)
+	{
+		killnode = head;
+		head = head->next;
+		free(killnode);
+	}
+}
 
 /**
  * print_listint_safe - Print out a given list, but only once if it loops
@@ -48,12 +63,16 @@ size_t print_listint_safe(const listint_t *head)
 			{
 				head = head->next;
 				printf("-> [%p] %d\n", (void *)head, head->n);
-				exit(98);
+				free_listadd(newhead);
+				newhead = NULL;
+				return (count);
 			}
 			checker = checker->next;
 		}
 		head = head->next;
 		count++;
 	}
+	free_listadd(newhead);
+	newhead = NULL;
 	return (count);
 }
