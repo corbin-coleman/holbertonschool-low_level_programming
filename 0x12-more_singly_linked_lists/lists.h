@@ -32,17 +32,7 @@ void free_listint2(listint_t **head);
 int pop_listint(listint_t **head);
 listint_t *get_nodeint_at_index(listint_t *head, unsigned int index);
 int sum_listint(listint_t *head);
-/**
- * insert_nodeint_at_index - Insert a new node at given index. Index start at 0
- * @head: Pointer to the pointer to the start of the list
- * @index: The index position to add the node at
- * @n: The value to assign to the data of the node
- *
- * Return: Address of the new node, or NULL if it fails or a node cannot be
- * added at the given index
- */
-listint_t *insert_nodeint_at_index(listint_t **head,
-				   unsigned int index, int n);
+listint_t *insert_nodeint_at_index(listint_t **, unsigned int index, int n);
 int delete_nodeint_at_index(listint_t **head, unsigned int index);
 listint_t *reverse_listint(listint_t **head);
 size_t print_listint_safe(const listint_t *head);
