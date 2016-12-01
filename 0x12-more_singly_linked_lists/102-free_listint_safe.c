@@ -18,29 +18,32 @@ size_t free_listint_safe(listint_t **h)
 	count = 0;
 	current = *h;
 	headadd = NULL;
-	while (current != NULL)
+	if (h != NULL)
 	{
-		checker = headadd;
-		while (checker != NULL)
+		while (current != NULL)
 		{
-			if (current->next == checker->address)
+			checker = headadd;
+			while (checker != NULL)
 			{
-				free(current);
-				free_listadd(headadd);
-				headadd = NULL;
-				*h = NULL;
-				return (count);
+				if (current->next == checker->address)
+				{
+					free(current);
+					free_listadd(headadd);
+					headadd = NULL;
+					*h = NULL;
+					return (count);
+				}
+				checker = checker->next;
 			}
-			checker = checker->next;
+			killnode = current;
+			add_nodeaddress(&headadd, current);
+			current = current->next;
+			free(killnode);
+			count++;
 		}
-		killnode = current;
-		add_nodeaddress(&headadd, current);
-		current = current->next;
-		free(killnode);
-		count++;
+		free_listadd(headadd);
+		headadd = NULL;
+		*h = NULL;
 	}
-	free_listadd(headadd);
-	headadd = NULL;
-	*h = NULL;
 	return (count);
 }
