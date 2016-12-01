@@ -20,7 +20,7 @@ typedef struct listint_s
  */
 typedef struct listadd_s
 {
-	const listint_t *address;
+	void *address;
 	struct listadd_s *next;
 } listadd_t;
 size_t print_listint(const listint_t *h);
