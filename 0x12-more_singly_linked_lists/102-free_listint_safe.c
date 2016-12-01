@@ -20,8 +20,6 @@ size_t free_listint_safe(listint_t **h)
 	headadd = NULL;
 	while (current != NULL)
 	{
-		killnode = current;
-		add_nodeaddress(&headadd, current);
 		checker = headadd;
 		while (checker != NULL)
 		{
@@ -35,6 +33,8 @@ size_t free_listint_safe(listint_t **h)
 			}
 			checker = checker->next;
 		}
+		killnode = current;
+		add_nodeaddress(&headadd, current);
 		current = current->next;
 		free(killnode);
 		count++;
