@@ -54,8 +54,6 @@ size_t print_listint_safe(const listint_t *head)
 	newhead = NULL;
 	while (head != NULL)
 	{
-		printf("[%p] %d\n", (void *)head, head->n);
-		add_nodeaddress(&newhead, head);
 		checker = newhead;
 		while (checker != NULL)
 		{
@@ -69,6 +67,8 @@ size_t print_listint_safe(const listint_t *head)
 			}
 			checker = checker->next;
 		}
+		printf("[%p] %d\n", (void *)head, head->n);
+		add_nodeaddress(&newhead, head);
 		head = head->next;
 		count++;
 	}
