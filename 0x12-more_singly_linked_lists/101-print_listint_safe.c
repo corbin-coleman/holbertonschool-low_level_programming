@@ -16,7 +16,7 @@ listadd_t *add_nodeaddress(listadd_t **head, const listint_t *address)
 	new = malloc(sizeof(listint_t));
 	if (new == NULL)
 		exit(98);
-	new->address = address;
+	new->address = (void *)address;
 	new->next = *head;
 	*head = new;
 	return (new);
