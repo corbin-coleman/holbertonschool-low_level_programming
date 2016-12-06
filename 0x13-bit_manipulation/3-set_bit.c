@@ -4,6 +4,9 @@
 /**
  * print_binary - Print out the binary representation of an unsigned long int
  * @n: The unsigned long int to print in binary
+ * @index: The index at which to set the value to 1
+ *
+ * Return: 1 if it succeeds, -1 if it fails
  */
 int set_bit(unsigned long int *n, unsigned int index)
 {
