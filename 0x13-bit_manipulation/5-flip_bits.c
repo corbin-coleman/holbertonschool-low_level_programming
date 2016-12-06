@@ -10,8 +10,7 @@
  */
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-	unsigned long int nlen, mlen, flip;
-	unsigned long int storen, storem;
+	unsigned long int nlen, mlen, flip, storen, storem;
 
 	nlen = mlen = flip = 0;
 	storen = n;
