@@ -2,7 +2,7 @@
 #include "holberton.h"
 
 /**
- * print_binary - Print out the binary representation of an unsigned long int
+ * set_bit - Print out the binary representation of an unsigned long int
  * @n: The unsigned long int to print in binary
  * @index: The index at which to set the value to 1
  *
