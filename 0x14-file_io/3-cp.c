@@ -34,7 +34,7 @@ void file2fail(char *file)
 int main(int argc, char *argv[])
 {
 	int file1, file2, file1rd, file2wr;
-	char buffer[1024];
+	char buffer[1204];
 
 	if (argc != 3)
 	{
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 	{
 		file2fail(argv[2]);
 	}
-	file1rd = read(file1, buffer, 1024);
+	file1rd = read(file1, buffer, 1204);
 	if (file1rd == -1)
 	{
 		file1fail(argv[1]);
@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
 		{
 			file2fail(argv[2]);
 		}
-		file1rd = read(file1, buffer, 1024);
+		file1rd = read(file1, buffer, 1204);
 		if (file1rd == -1)
 		{
 			file1fail(argv[1]);
