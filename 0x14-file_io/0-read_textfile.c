@@ -1,12 +1,15 @@
 #include "holberton.h"
-#include <fcntl.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include <stdlib.h>
 
 /**
-  * read_textfile - define function
-  * @void: describe argument
-  * Return: 0 on success
+  * read_textfile - Read an inputted text file and
+  * print contents to standard output
+  * @filename: Name of the file to read from
+  * @letters: The number of characters to read
+  *
+  * Return: Number of characters actually read, 0 on failure
   */
 size_t read_textfile(const char *filename, size_t letters)
 {
