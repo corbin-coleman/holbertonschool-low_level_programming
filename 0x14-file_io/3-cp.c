@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 	while (file1rd > 0)
 	{
 		file2wr = write(file2, buffer, file1rd);
-		if (file2wr == -1)
+		if (file2wr != file1rd)
 			file2fail(argv[2]);
 		file1rd = read(file1, buffer, BUFSIZE);
 		if (file1rd == -1)
