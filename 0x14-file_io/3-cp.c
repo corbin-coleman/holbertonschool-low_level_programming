@@ -4,6 +4,8 @@
 #include <fcntl.h>
 #include <stdio.h>
 
+#define BUFSIZE 1204
+
 /**
  * file1fail - Print error message if can't read file
  * @file: Name of the file that can't be read
@@ -52,13 +54,17 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
+	if (argv[1] == NULL)
+		file1fail(argv[1]);
+	if (argv[2] == NULL)
+		file2fail(argv[2]);
 	file1 = open(argv[1], O_RDONLY);
 	if (file1 == -1)
 		file1fail(argv[1]);
 	file2 = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, mode);
 	if (file2 == -1)
 		file2fail(argv[2]);
-	file1rd = read(file1, buffer, 1204);
+	file1rd = read(file1, buffer, BUFSIZE);
 	if (file1rd == -1)
 		file1fail(argv[1]);
 	while (file1rd > 0)
@@ -66,7 +72,7 @@ int main(int argc, char *argv[])
 		file2wr = write(file2, buffer, file1rd);
 		if (file2wr == -1)
 			file2fail(argv[2]);
-		file1rd = read(file1, buffer, 1204);
+		file1rd = read(file1, buffer, BUFSIZE);
 		if (file1rd == -1)
 			file1fail(argv[1]);
 	}
