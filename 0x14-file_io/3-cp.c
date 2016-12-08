@@ -30,7 +30,7 @@ void file2fail(char *file)
  */
 void closefail(int fd)
 {
-	dprintf(STDERR_FILENO, "Error: Can't close file fd %d\n", fd);
+	dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
 	exit(100);
 }
 
