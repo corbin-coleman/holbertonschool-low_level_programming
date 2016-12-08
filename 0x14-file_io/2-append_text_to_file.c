@@ -5,7 +5,7 @@
 
 /**
   * append_text_to_file - Open a file and add text to the end of the file
-  * @file: File to open and append to
+  * @filename: File to open and append to
   * @text_content: Text to append to file
   *
   * Return: 1 on success, -1 on failures
