@@ -4,8 +4,6 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-#define BUFSIZE 1204
-
 /**
  * file1fail - Print error message if can't read file
  * @file: Name of the file that can't be read
@@ -46,7 +44,7 @@ void closefail(int fd)
 int main(int argc, char *argv[])
 {
 	int file1, file2, file1rd, file2wr, closed;
-	char buffer[1204];
+	char buffer[BUFSIZE];
 	mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 
 	if (argc != 3)
