@@ -20,7 +20,7 @@ void file1fail(char *file)
  */
 void file2fail(char *file)
 {
-	dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", file);
+	dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file);
 	exit(99);
 }
 
