@@ -2,7 +2,7 @@
 This project focuses on manipulating doubly linked lists in C
 
 ## Description of Files
-<h6>0-print_dlistint.c</h6>
+<h4>0-print_dlistint.c</h4>
 Print out all the elements in a doubly linked list.
 <h6>1-dlistint_len.c</h6>
 Find the length of the linked list.
