@@ -42,11 +42,11 @@ dlistint_t *insert_dnodeint_at_idx(dlistint_t **head, unsigned int idx, int n)
 				*head = new_node;
 			return (new_node);
 		}
+		free(new_node);
 		return (NULL);
 	}
 	new_node->next = NULL;
 	new_node->prev = NULL;
-	new_node->n = n;
-	*head = new_node;
+	new_node->n = n; *head = new_node;
 	return (new_node);
 }
