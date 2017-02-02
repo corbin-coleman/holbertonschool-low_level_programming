@@ -1,5 +1,10 @@
 #include "hash_tables.h"
 
+/**
+ * hash_djb2 - Create the hash value for the given string
+ * @str: The string to create a hash value for
+ * Return: The hash value created
+ **/
 unsigned long int hash_djb2(const unsigned char *str)
 {
 	unsigned long int hash;

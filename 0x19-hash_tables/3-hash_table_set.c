@@ -1,5 +1,12 @@
 #include "hash_tables.h"
 
+/**
+ * hash_table_set - Put a value into the hash table
+ * @ht: The hash table struct
+ * @key: The key used to find the value
+ * @value: The value to add
+ * Return: 1 on success, 0 on fail
+ **/
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index;
@@ -23,6 +30,14 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	return (pass_fail);
 }
 
+/**
+ * check_list - check a list at the key's index for the key
+ * @key: Key to look for
+ * @ht: Hash table to look through
+ * @index: Index of the hashed key value
+ * @value: The value associated with the key to add
+ * Return: 1 on success, 0 for failure
+ **/
 int check_list(char *key, hash_table_t *ht,
 	       unsigned long int index, char *value)
 {
