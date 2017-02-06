@@ -56,7 +56,7 @@ int check_list(char *key, hash_table_t *ht,
 		if (strcmp(key, current_node->key) == 0)
 		{
 			current_node->value = strdup(value);
-			if (curren_node->value == NULL)
+			if (current_node->value == NULL)
 				return (0);
 			return (1);
 		}
