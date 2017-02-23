@@ -1,8 +1,9 @@
 #include "sort.h"
+
 /**
- *
- *
- *
+ * selection_sort - Find the lowest number and put it in front
+ * @array: Array to sort
+ * @size: Size of the array
  *
  */
 void selection_sort(int *array, size_t size)
@@ -14,6 +15,8 @@ void selection_sort(int *array, size_t size)
 	int min_index;
 	int swapped;
 
+	if (array == NULL)
+		return;
 	while(i < size)
 	{
 		j = i;

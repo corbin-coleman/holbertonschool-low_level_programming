@@ -1,7 +1,8 @@
 #include "sort.h"
+
 /**
- *
- *
+ * insertion_sort_list - Move a node forward until the one in front is smaller
+ * @list: The pointer to the start of the list
  *
  *
  */
@@ -11,6 +12,8 @@ void insertion_sort_list(listint_t **list)
 	listint_t *bkwdwalker;
 	listint_t *prevbkwd;
 
+	if (list == NULL || *list == NULL)
+		return;
 	walker = *list;
 	walker = walker->next;
 	while (walker != NULL)
