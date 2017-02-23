@@ -23,8 +23,12 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (ht->array[index] == NULL)
 	{
 		ht->array[index] = node;
-		node->key = (char *) key;
-		node->value = (char *) value;
+		node->key = strdup(key);
+		if (node->key == NULL)
+			return (0);
+		node->value = strdup(value);
+		if (node->value == NULL)
+			return (0);
 		node->next = NULL;
 	}
 	else
@@ -51,7 +55,9 @@ int check_list(char *key, hash_table_t *ht,
 	{
 		if (strcmp(key, current_node->key) == 0)
 		{
-			current_node->value = value;
+			current_node->value = strdup(value);
+			if (current_node->value == NULL)
+				return (0);
 			return (1);
 		}
 		current_node = current_node->next;
@@ -61,8 +67,12 @@ int check_list(char *key, hash_table_t *ht,
 	if (new_node == NULL)
 		return (0);
 	new_node->next = current_node;
-	new_node->key = key;
-	new_node->value = value;
+	new_node->key = strdup(key);
+	if (new_node->key == NULL)
+		return (0);
+	new_node->value = strdup(value);
+	if (new_node->value == NULL)
+		return (0);
 	ht->array[index] = new_node;
 	return (1);
 }
