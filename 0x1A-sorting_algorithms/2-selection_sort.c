@@ -17,14 +17,14 @@ void selection_sort(int *array, size_t size)
 
 	if (array == NULL)
 		return;
-	while(i < size)
+	while (i < size)
 	{
 		j = i;
 		compare = array[i];
 		swapped = 0;
-		while(j < size)
+		while (j < size)
 		{
-			if(compare > array[j])
+			if (compare > array[j])
 			{
 				compare = array[j];
 				min_index = j;
