@@ -10,7 +10,7 @@ void quick_sort(int *array, size_t size)
 	int *whole_array;
 	size_t full_size;
 
-	if (array == NULL)
+	if (array == NULL || size > 2)
 		return;
 	whole_array = &array[0];
 	full_size = size;
