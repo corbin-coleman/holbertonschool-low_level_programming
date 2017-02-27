@@ -1,2 +1,4 @@
+# Makefile 0
+
 all: holberton.c main.c
 	gcc-4.8 main.c holberton.c -o holberton
