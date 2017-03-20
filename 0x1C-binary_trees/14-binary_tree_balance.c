@@ -1,5 +1,11 @@
 #include "binary_trees.h"
 
+/**
+ * find_height - Find the height of the given tree
+ * @tree: The tree to find the height of
+ * @height: Current height of the tree
+ * Return: The height of the taller branch of the tree
+ **/
 int find_height(binary_tree_t *tree, int height)
 {
 	int left_height, right_height;
@@ -16,6 +22,11 @@ int find_height(binary_tree_t *tree, int height)
 	return (right_height);
 }
 
+/**
+ * binary_tree_balance - Find the balance factor of given tree
+ * @tree: The tree to find the balance of
+ * Return: The difference of the left_height and right_height of the tree
+ **/
 int binary_tree_balance(const binary_tree_t *tree)
 {
 	int left_height, right_height;
