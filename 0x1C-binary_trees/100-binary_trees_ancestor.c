@@ -1,17 +1,6 @@
 #include "binary_trees.h"
 
 /**
- * struct binary_tree_list - List of nodes from a binary tree
- * @node: The node from the binary tree
- * @next: The next node in the list
- **/
-typedef struct binary_trees_list
-{
-	binary_tree_t *node;
-	struct binary_trees_list *next;
-} binary_tree_list;
-
-/**
  * free_lists - Free a binary_tree_list list
  * @head: The list to free
  **/
