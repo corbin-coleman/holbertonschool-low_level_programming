@@ -7,17 +7,6 @@
 #include <string.h>
 
 /**
- * struct binary_trees_list - List of nodes from a binary tree
- * @node: The node from the binary tree
- * @next: The next node in the list
- **/
-typedef struct binary_trees_list
-{
-	binary_tree_t *node;
-	struct binary_trees_list *next;
-} binary_tree_list;
-
-/**
  * struct binary_tree_s - Binary tree node
  *
  * @n: Integer stored in the node
@@ -36,6 +25,18 @@ typedef struct binary_tree_s binary_tree_t;
 typedef struct binary_tree_s bst_t;
 typedef struct binary_tree_s avl_t;
 typedef struct binary_tree_s heap_t;
+
+
+/**
+ * struct binary_trees_list - List of nodes from a binary tree
+ * @node: The node from the binary tree
+ * @next: The next node in the list
+ **/
+typedef struct binary_trees_list
+{
+	binary_tree_t *node;
+	struct binary_trees_list *next;
+} binary_tree_list;
 
 
 void binary_tree_print(const binary_tree_t *);
