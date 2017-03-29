@@ -15,7 +15,7 @@ int leaf_check(const binary_tree_t *node)
 }
 
 /**
- * binary_tree_is_complete = Check if a tree is complete
+ * binary_tree_is_complete - Check if a tree is complete
  * @tree: The root of the tree to check
  * Return: 1 if tree is complete, 0 if it's not complete
  **/
