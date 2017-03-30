@@ -29,10 +29,10 @@ int jump_search(int *array, size_t size, int value)
 
 	if (array == NULL)
 		return (-1);
-	while (array[low(step, size)] < value && step < size)
+	while (array[low(step, size - 1)] < value && step < size)
 	{
-		printf("Value checked array[%lu] = [%d]\n", low(step, size),
-		       array[low(step, size)]);
+		printf("Value checked array[%lu] = [%d]\n", low(step, size - 1),
+		       array[low(step, size - 1)]);
 		previous_step = step;
 		step += sqrt(size);
 	}
