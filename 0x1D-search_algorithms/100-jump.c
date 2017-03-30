@@ -1,19 +1,6 @@
 #include "search_algos.h"
 
 /**
- * low - Find the lower number
- * @step: One of the numbers
- * @size: The other number
- * Return: The lower value
- **/
-size_t low(size_t step, size_t size)
-{
-	if (step < size)
-		return (step);
-	return (size);
-}
-
-/**
  * jump_search - Use a jump search algorithm to find a given value
  * @array: Array to search through
  * @size: Size of the array
@@ -29,10 +16,10 @@ int jump_search(int *array, size_t size, int value)
 
 	if (array == NULL)
 		return (-1);
-	while (array[low(step, size)] < value && step < size)
+	while (array[step] < value && step < size)
 	{
-		printf("Value checked array[%lu] = [%d]\n", low(step, size),
-		       array[low(step, size)]);
+		printf("Value checked array[%lu] = [%d]\n", step,
+		       array[step]);
 		previous_step = step;
 		step += sqrt(size);
 	}
