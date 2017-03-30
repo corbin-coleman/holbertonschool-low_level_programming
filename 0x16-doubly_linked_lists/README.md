@@ -1,4 +1,4 @@
-#Holberton School - 0x16-doubly_linked_lists
+# Holberton School - 0x16-doubly_linked_lists
 This project focuses on manipulating doubly linked lists in C
 
 ## Description of Files
@@ -21,5 +21,5 @@ Add a node to a doubly linked list at a specific index starting from 0.
 <h4>8-delete_dnodeint.c</h4>
 Delete a node from a doubly linked list at a specific index starting at 0
 
-###Author
+### Author
 Corbin Coleman
