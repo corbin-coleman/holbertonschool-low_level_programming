@@ -1,4 +1,4 @@
-#Holberton School - 0x1D-Search Algorithms
+# Holberton School - 0x1D-Search Algorithms
 This project, for Holberton School, focuses on search algorithms. Looking specifically at a linear search versus a binary search, and the time complexity of each. All algorithms are written in C.
 
 ## Description of Files
