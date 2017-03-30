@@ -8,9 +8,9 @@
  **/
 size_t low(size_t step, size_t size)
 {
-        if (step < size)
-                return (step);
-        return (size);
+	if (step < size)
+		return (step);
+	return (size);
 }
 
 /**
