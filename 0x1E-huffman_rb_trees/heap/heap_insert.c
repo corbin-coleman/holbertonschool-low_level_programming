@@ -18,9 +18,9 @@ binary_tree_node_t *add_node(binary_tree_node_t **parent,
 	}
 	if (data_cmp((*parent)->data, new_node->data) > 0)
 	{
-		(*parent)->parent = new_node;
-		new_node->parent = NULL;
 		new_node->left = *parent;
+		new_node->parent = (*parent)->parent;
+		(*parent)->parent = new_node;
 		*parent = new_node;
 		return (new_node);
 	}
