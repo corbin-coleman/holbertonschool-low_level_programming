@@ -1,68 +1,118 @@
 #include "heap.h"
 
 /**
- * add_node - Put the node in the tree, recursively
- * @parent: Potential parent of the new node
- * @node: Node to insert
- * Return: Address of the new node, NULL if it fails
+ * find_parent - Find the parent of the node being inserted
+ * @heap: The heap structure containing the binary tree, and its size
+ * Return: The parent node of the node being inserted
  **/
-binary_tree_node_t *add_node(binary_tree_node_t **parent,
-			     binary_tree_node_t *new_node,
-			     int (*data_cmp)(void *, void *))
+binary_tree_node_t *find_parent(heap_t *heap)
 {
-	if (*parent == NULL)
+	binary_tree_node_t *parent;
+	size_t row, pos;
+
+	row = 1;
+	while ((row * 2) <= heap->size + 1)
 	{
-		new_node->parent = *parent;
-		*parent = new_node;
-		return (new_node);
+		row *= 2;
 	}
-	if (data_cmp((*parent)->data, new_node->data) > 0)
+	pos = heap->size + 1;
+	parent = heap->root;
+
+	while (row > 2)
 	{
-		new_node->left = *parent;
-		new_node->parent = (*parent)->parent;
-		(*parent)->parent = new_node;
-		*parent = new_node;
-		return (new_node);
+		if (pos >= row)
+			pos -= row;
+
+		if (pos < row / 2)
+			parent = parent->left;
+		else
+			parent = parent->right;
+
+		row /= 2;
 	}
-	if ((*parent)->left == NULL)
-	{
-		(*parent)->left = new_node;
-		new_node->parent = *parent;
-		return (new_node);
-	}
-	if ((*parent)->right == NULL)
-	{
-		(*parent)->right = new_node;
-		new_node->parent = *parent;
-		return (new_node);
-	}
-	if ((*parent)->left->left == NULL || (*parent)->left->right == NULL)
-	{
-		return (add_node(&(*parent)->left, new_node, data_cmp));
-	}
-	return (add_node(&(*parent)->right, new_node, data_cmp));
+
+	return (parent);
 }
 
+void swap_nodes(binary_tree_node_t *new_node, binary_tree_node_t *parent,
+		int (*data_cmp)(void *, void *), heap_t *heap)
+{
+	binary_tree_node_t *grandparent, *temp;
 
+	while (data_cmp(parent->data, new_node->data) > 0)
+	{
+		grandparent = parent->parent;
+		if (parent->left == new_node)
+		{
+			new_node->parent = grandparent;
+			temp = parent->right;
+			parent->left = new_node->left;
+			parent->right = new_node->right;
+			new_node->right = temp;
+			new_node->left = parent;
+			parent->parent = new_node;
+		}
+		if (parent->right == new_node)
+		{
+			new_node->parent = grandparent;
+			temp = parent->left;
+			temp->parent = new_node;
+			parent->left = new_node->left;
+			parent->right = new_node->right;
+			new_node->left = temp;
+			new_node->right = parent;
+			parent->parent = new_node;
+
+		}
+		if (grandparent)
+		{
+			if (grandparent->left == parent)
+				grandparent->left = new_node;
+			else
+				grandparent->right = new_node;
+		}
+		parent = grandparent;
+		if (parent == NULL)
+		{
+			heap->root = new_node;
+			break;
+		}
+	}
+}
 
 /**
  * heap_insert - Insert a node into a binary tree heap
- * @heap: The heap to insert into
+ * @heap: The heap structure with the tree
  * @data: Data for the new node
- * Return: Address of new node, or NULL if it fails
+ * Return: Address of new node, NULL if it fails
  **/
 binary_tree_node_t *heap_insert(heap_t *heap, void *data)
 {
-	binary_tree_node_t *new_node;
+	binary_tree_node_t *parent, *new_node;
 
 	if (heap == NULL)
 		return (NULL);
-	new_node = malloc(sizeof(binary_tree_node_t));
-	if (new_node == NULL)
-		return (NULL);
-	new_node->data = data;
-	new_node->parent = NULL;
-	new_node->left = NULL;
-	new_node->right = NULL;
-	return (add_node(&heap->root, new_node, heap->data_cmp));
+
+	if (heap->size == 0)
+	{
+		heap->root = binary_tree_node(NULL, data);
+		heap->size++;
+		return (heap->root);
+	}
+
+
+	parent = find_parent(heap);
+	if (parent->left == NULL)
+	{
+		parent->left = binary_tree_node(parent, data);
+		new_node = parent->left;
+	}
+	else
+	{
+		parent->right = binary_tree_node(parent, data);
+		new_node = parent->right;
+	}
+	heap->size++;
+	swap_nodes(new_node, parent, heap->data_cmp, heap);
+	return (new_node);
 }
