@@ -34,6 +34,7 @@ binary_tree_node_t *find_last_node(binary_tree_node_t *root, size_t size)
 /**
  * swap_down - Swap the root node down if it's larger than nodes below
  * @root: The root of the binary tree to swap through
+ * @data_cmp: Function used to compare the value of the data in two nodes
  **/
 void swap_down(binary_tree_node_t *root, int (*data_cmp)(void *, void *))
 {
