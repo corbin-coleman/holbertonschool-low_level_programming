@@ -42,27 +42,24 @@ void swap_nodes(binary_tree_node_t *new_node, binary_tree_node_t *parent,
 	while (data_cmp(parent->data, new_node->data) > 0)
 	{
 		grandparent = parent->parent;
+		new_node->parent = grandparent;
+		parent->parent = new_node;
 		if (parent->left == new_node)
 		{
-			new_node->parent = grandparent;
 			temp = parent->right;
 			parent->left = new_node->left;
 			parent->right = new_node->right;
 			new_node->right = temp;
 			new_node->left = parent;
-			parent->parent = new_node;
 		}
 		if (parent->right == new_node)
 		{
-			new_node->parent = grandparent;
 			temp = parent->left;
 			temp->parent = new_node;
 			parent->left = new_node->left;
 			parent->right = new_node->right;
 			new_node->left = temp;
 			new_node->right = parent;
-			parent->parent = new_node;
-
 		}
 		if (grandparent)
 		{
