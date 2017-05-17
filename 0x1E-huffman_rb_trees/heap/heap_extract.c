@@ -32,35 +32,106 @@ binary_tree_node_t *find_last_node(binary_tree_node_t *root, size_t size)
 }
 
 /**
- * swap_down - Swap the root node down if it's larger than nodes below
- * @root: The root of the binary tree to swap through
- * @data_cmp: Function used to compare the value of the data in two nodes
+ * swap_left - Swap nodes to the left
+ * @root: The current node you're on
+ * @swap_node: The node being swapped with
  **/
-void swap_down(binary_tree_node_t *root, int (*data_cmp)(void *, void *))
+void swap_left(binary_tree_node_t *root, binary_tree_node_t *swap_node)
 {
-	void *temp_data;
+	binary_tree_node_t *temp_node;
+
+	swap_node->parent = root->parent;
+	root->left = swap_node->left;
+	swap_node->left = root;
+	temp_node = swap_node->right;
+	if (root->right != NULL)
+		root->right->parent = swap_node;
+	if (temp_node != NULL)
+		temp_node->parent = root;
+	swap_node->right = root->right;
+	root->right = temp_node;
+	root->parent = swap_node;
+}
+
+/**
+ * swap_right - Swap nodes to the left
+ * @root: The current node you're on
+ * @swap_node: The node being swapped with
+ **/
+void swap_right(binary_tree_node_t *root, binary_tree_node_t *swap_node)
+{
+	binary_tree_node_t *temp_node;
+
+	swap_node->parent = root->parent;
+	root->right = swap_node->right;
+	swap_node->right = root;
+	temp_node = swap_node->left;
+	if (root->left != NULL)
+		root->left->parent = swap_node;
+	if (temp_node != NULL)
+		temp_node->parent = root;
+	swap_node->left = root->left;
+	root->left = temp_node;
+	root->parent = swap_node;
+}
+
+/**
+ * assign_parent - Assigns the parent of the current root properly
+ * @swap_node: The node being swapped with
+ * @parent: The parent to the root node
+ * @root: The root node being swapped
+ **/
+void assign_parent(binary_tree_node_t *swap_node, binary_tree_node_t *parent,
+		   binary_tree_node_t *root)
+{
+	if (parent->left == root)
+		parent->left = swap_node;
+	else
+		parent->right = swap_node;
+}
+
+/**
+ * swap_down - Swap the root node down if it's larger than nodes below
+ * @heap: heap containing the binary tree to swap through
+ **/
+void swap_down(heap_t *heap)
+{
+	binary_tree_node_t *root, *swap_node;
+	int (*data_cmp)(void *, void *);
 	int left_cmp, right_cmp;
 
+	root = heap->root;
+	data_cmp = heap->data_cmp;
 	left_cmp = right_cmp = 0;
-	if (root == NULL)
-		return;
 	if (root->left != NULL)
 		left_cmp = data_cmp(root->data, root->left->data);
 	if (root->right != NULL)
 		right_cmp = data_cmp(root->data, root->right->data);
-
-	temp_data = root->data;
-	if (left_cmp > 0)
+	while (left_cmp > 0 || right_cmp > 0)
 	{
-		root->data = root->left->data;
-		root->left->data = temp_data;
-		swap_down(root->left, data_cmp);
-	}
-	else if (right_cmp > 0)
-	{
-		root->data = root->right->data;
-		root->right->data = temp_data;
-		swap_down(root->right, data_cmp);
+		if (left_cmp > 0)
+		{
+			swap_node = root->left;
+			if (root->parent == NULL)
+				heap->root = swap_node;
+			else
+				assign_parent(swap_node, root->parent, root);
+			swap_left(root, swap_node);
+		}
+		else if (right_cmp > 0)
+		{
+			swap_node = root->right;
+			if (root->parent == NULL)
+				heap->root = swap_node;
+			else
+				assign_parent(swap_node, root->parent, root);
+			swap_right(root, swap_node);
+		}
+		left_cmp = right_cmp = 0;
+		if (root->left != NULL)
+			left_cmp = data_cmp(root->data, root->left->data);
+		if (root->right != NULL)
+			right_cmp = data_cmp(root->data, root->right->data);
 	}
 }
 
@@ -86,7 +157,7 @@ void *heap_extract(heap_t *heap)
 		last_node->parent->right = NULL;
 	last_node->parent = NULL;
 	heap->root = last_node;
-	swap_down(heap->root, heap->data_cmp);
+	swap_down(heap);
 	data = extract_node->data;
 	free(extract_node);
 	heap->size--;
