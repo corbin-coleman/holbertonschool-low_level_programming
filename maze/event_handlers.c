@@ -1,13 +1,14 @@
 #include "maze.h"
 
-int keyboard_events(double *play_x, double *play_y, double *dir_x,
-		    double *dir_y, double *plane_x, double *plane_y, char **mazeMap)
+/**
+ * keyboard_events - Check for key presses
+ * @key_press: Struct for up/down/left/right key presses
+ * Return: 0 for standard events, 1 for exit events
+ **/
+int keyboard_events(keys *key_press)
 {
 	SDL_Event event;
-	double old_dir_x, old_plane_x, rotate_speed, move_speed;
 
-	move_speed = 1;
-	rotate_speed = 0.2;
 	while (SDL_PollEvent(&event))
 	{
 		switch (event.type)
@@ -20,34 +21,19 @@ int keyboard_events(double *play_x, double *play_y, double *dir_x,
 			switch (event.key.keysym.sym)
 			{
 			case SDLK_UP:
-				if (mazeMap[(int)(*play_x + *dir_x * move_speed)][(int)*play_y] == '0')
-					*play_x += *dir_x * move_speed;
-				if (mazeMap[(int)*play_x][(int)(*play_y + *dir_y * move_speed)] == '0')
-					*play_y += *dir_y * move_speed;
+				key_press->up = 1;
 				break;
 			case SDLK_DOWN:
-				if (mazeMap[(int)(*play_x - *dir_x * move_speed)][(int)*play_y] == '0')
-					*play_x -= *dir_x * move_speed;
-				if (mazeMap[(int)*play_x][(int)(*play_y - *dir_y * move_speed)] == '0')
-					*play_y -= *dir_y * move_speed;
+				key_press->down = 1;
 				break;
 			case SDLK_RIGHT:
-				old_dir_x = *dir_x;
-				*dir_x = *dir_x * cos(-rotate_speed) - *dir_y * sin(-rotate_speed);
-				*dir_y = old_dir_x * sin(-rotate_speed) + *dir_y * cos(-rotate_speed);
-				old_plane_x = *plane_x;
-				*plane_x = *plane_x * cos(-rotate_speed) - *plane_y * sin(-rotate_speed);
-				*plane_y = old_plane_x * sin(-rotate_speed) + *plane_y * cos(-rotate_speed);
+				key_press->right = 1;
 				break;
 			case SDLK_LEFT:
-				old_dir_x = *dir_x;
-				*dir_x = *dir_x * cos(rotate_speed) - *dir_y * sin(rotate_speed);
-				*dir_y = old_dir_x * sin(rotate_speed) + *dir_y * cos(rotate_speed);
-				old_plane_x = *plane_x;
-				*plane_x = *plane_x * cos(rotate_speed) - *plane_y * sin(rotate_speed);
-				*plane_y = old_plane_x * sin(rotate_speed) + *plane_y * cos(rotate_speed);
+				key_press->left = 1;
 				break;
 			}
+			break;
 		}
 	}
 	return (0);

@@ -1,47 +1,47 @@
 #include "maze.h"
 
-void draw_background(SDL_Instance instance)
-{
-	size_t x;
-
-
-	for (x = 0; x <= SCREEN_WIDTH; x++)
-	{
-		SDL_SetRenderDrawColor(instance.renderer, 0, 0xDD, 0xFF, 0xFF);
-		SDL_RenderDrawLine(instance.renderer, x, 0, x, SCREEN_HEIGHT / 2);
-		SDL_SetRenderDrawColor(instance.renderer, 0xFF, 0, 0xFF, 0xFF);
-		SDL_RenderDrawLine(instance.renderer, x, SCREEN_HEIGHT / 2, x, SCREEN_HEIGHT);
-	}
-
-}
-
+/**
+ * main - The main function to run the maze game
+ * @argc: The number of arguments passed to the program
+ * @argv: All the arguments passed to the program
+ * Return: 1 if failure, 0 if successful exit
+ **/
 int main(int argc, char *argv[])
 {
 	SDL_Instance instance;
 	char **map;
-	double play_x, play_y, dir_x, dir_y, plane_x, plane_y;
+	double_s play = {2, 2};
+	double_s dir = {-1, 0};
+	double_s plane = {0, 0.5};
+	keys key_press = {0, 0, 0, 0};
 
-	play_x = 2;
-	play_y = 2;
-	dir_x = -1;
-	dir_y = 0;
-	plane_x = 0;
-	plane_y = 0.5;
 	if (argc < 2)
 		return (1);
-	map = create_map(argv[1], &play_x, &play_y);
-	if (init_instance(&instance) != 0)
+	map = create_map(argv[1], &play);
+	if (map == NULL)
+	{
+		printf("Unable to create map\n");
 		return (1);
-
+	}
+	if (init_instance(&instance) != 0)
+	{
+		printf("Unable to initialize SDL_Instance\n");
+		return (1);
+	}
 	while (1)
 	{
+		key_press.up = 0;
+		key_press.down = 0;
+		key_press.left = 0;
+		key_press.right = 0;
 		SDL_SetRenderDrawColor(instance.renderer, 0, 0, 0, 0);
 		SDL_RenderClear(instance.renderer);
 		draw_background(instance);
-		draw_walls(map, play_x, play_y, instance, dir_x, dir_y, plane_x, plane_y);
+		draw_walls(map, play, instance, dir, plane);
 		SDL_RenderPresent(instance.renderer);
-		if (keyboard_events(&play_x, &play_y, &dir_x, &dir_y, &plane_x, &plane_y, map))
+		if (keyboard_events(&key_press))
 			break;
+		movement(key_press, &plane, &dir, &play, map);
 	}
 	SDL_DestroyRenderer(instance.renderer);
 	SDL_DestroyWindow(instance.window);
