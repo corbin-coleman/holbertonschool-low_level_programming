@@ -22,3 +22,6 @@ A SMS Docker Container Management System (2nd place at a Docker Hackathon 2017)
 
 ### <a href="https://github.com/corbin-coleman/holbertonschool-low_level_programming/tree/master/maze">Maze</a>
 A simple 3D maze written in C using SDL2 and ray casting for graphics
+
+## Authors
+Corbin Coleman \<corbin.coleman@holbertonschool.com> <a href="https://twitter.com/CorbinMColeman">@CorbinMColeman</a>
