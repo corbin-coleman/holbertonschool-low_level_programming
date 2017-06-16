@@ -32,7 +32,30 @@ int keyboard_events(keys *key_press)
 			case SDLK_LEFT:
 				key_press->left = 1;
 				break;
+			default:
+				break;
 			}
+			break;
+		case SDL_KEYUP:
+			switch (event.key.keysym.sym)
+			{
+			case SDLK_UP:
+				key_press->up = 0;
+				break;
+			case SDLK_DOWN:
+				key_press->down = 0;
+				break;
+			case SDLK_RIGHT:
+				key_press->right = 0;
+				break;
+			case SDLK_LEFT:
+				key_press->left = 0;
+				break;
+			default:
+				break;
+			}
+			break;
+		default:
 			break;
 		}
 	}

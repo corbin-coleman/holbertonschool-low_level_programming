@@ -30,18 +30,18 @@ int main(int argc, char *argv[])
 	}
 	while (1)
 	{
-		key_press.up = 0;
+/*		key_press.up = 0;
 		key_press.down = 0;
 		key_press.left = 0;
-		key_press.right = 0;
+		key_press.right = 0;*/
+		if (keyboard_events(&key_press))
+			break;
+		movement(key_press, &plane, &dir, &play, map);
 		SDL_SetRenderDrawColor(instance.renderer, 0, 0, 0, 0);
 		SDL_RenderClear(instance.renderer);
 		draw_background(instance);
 		draw_walls(map, play, instance, dir, plane);
 		SDL_RenderPresent(instance.renderer);
-		if (keyboard_events(&key_press))
-			break;
-		movement(key_press, &plane, &dir, &play, map);
 	}
 	SDL_DestroyRenderer(instance.renderer);
 	SDL_DestroyWindow(instance.window);
