@@ -44,19 +44,55 @@ size_t get_char_count(char *line)
 }
 
 /**
+ * plot_grid_points - Plot the specific points in the maze
+ * @maze: The 2D array representing the map grid
+ * @play: The player's x/y position
+ * @win: The x/y cooridinates of the win square
+ * @cur_char: The current character in the line being read
+ * @maze_line: The line in the maze currently being created
+ * @line: The line being read from the file
+ **/
+void plot_grid_points(char **maze, double_s *play, int_s *win, size_t cur_char,
+		      size_t maze_line, char *line)
+{
+			if (line[cur_char] == 'p')
+			{
+				play->y = cur_char;
+				play->x = maze_line;
+				maze[maze_line][cur_char] = '0';
+			}
+			else if (line[cur_char] == 'w')
+			{
+				win->y = cur_char;
+				win->x = maze_line;
+				maze[maze_line][cur_char] = '0';
+			}
+			else
+			{
+				if (line[cur_char] == '0')
+				{
+					win->y = cur_char;
+					win->x = maze_line;
+				}
+				maze[maze_line][cur_char] = line[cur_char];
+			}
+}
+
+/**
  * create_map - Create a 2D array for the map of the maze
  * @file_string: Path to the file containing the representation of the map
  * @play: Player x/y position
+ * @win: The x/y cooridinate of the winning space
  * Return: char ** to a representation of the map, NULL if it fails
  **/
-char **create_map(char *file_string, double_s *play)
+char **create_map(char *file_string, double_s *play, int_s *win)
 {
 	FILE *maze_file;
 	char **maze, *line = NULL;
 	ssize_t read = 0;
-	size_t line_count, maze_line, char_count, cur_char, bufsize;
+	size_t line_count, maze_line, char_count, cur_char, bufsize, win_spot;
 
-	maze_line = 0;
+	win_spot = maze_line = 0;
 	line_count = get_line_count(file_string);
 	if (line_count == 0)
 		return (NULL);
@@ -75,14 +111,7 @@ char **create_map(char *file_string, double_s *play)
 			return (NULL);
 		for (cur_char = 0; cur_char < char_count; cur_char++)
 		{
-			if (line[cur_char] == 'p')
-			{
-				play->y = cur_char;
-				play->x = maze_line;
-				maze[maze_line][cur_char] = '0';
-			}
-			else
-				maze[maze_line][cur_char] = line[cur_char];
+			plot_grid_points(maze, play, win, cur_char, maze_line, line);
 		}
 		maze_line++;
 		read = getline(&line, &bufsize, maze_file);
