@@ -37,10 +37,7 @@ int main(int argc, char *argv[])
 		movement(key_press, &plane, &dir, &play, map);
 		if (check_win(play, win, &win_value))
 			break;
-		draw_background(instance);
-		draw_walls(map, play, instance, dir, plane);
-		SDL_RenderPresent(instance.renderer);
-		usleep(150 * 1000);
+		draw(instance, map, play, dir, plane);
 	}
 	if (win_value)
 		print_win();
