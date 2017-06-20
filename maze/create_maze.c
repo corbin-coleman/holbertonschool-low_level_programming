@@ -14,7 +14,10 @@ size_t get_line_count(char *file_string)
 
 	maze_file = fopen(file_string, "r");
 	if (maze_file == NULL)
+	{
+		printf("File does not exist\n");
 		return (0);
+	}
 	lines = 0;
 	read = getline(&line, &line_len, maze_file);
 	if (read == -1)
