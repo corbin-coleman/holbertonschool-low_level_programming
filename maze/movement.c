@@ -10,7 +10,7 @@ void rotate(double_s *plane, double_s *dir, int rot_dir)
 {
 	double rotate_speed, old_dir_x, old_plane_x;
 
-	rotate_speed = 0.02 * rot_dir;
+	rotate_speed = 0.03 * rot_dir;
 	old_dir_x = dir->x;
 	dir->x = dir->x * cos(rotate_speed) - dir->y * sin(rotate_speed);
 	dir->y = old_dir_x * sin(rotate_speed) + dir->y * cos(rotate_speed);
