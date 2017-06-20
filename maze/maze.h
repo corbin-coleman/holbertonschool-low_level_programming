@@ -77,4 +77,8 @@ int check_win(double_s, int_s, int *);
 void plot_grid_points(char **, double_s *, int_s *, size_t, size_t, char *);
 void check_key_release_events(SDL_Event, keys *);
 int check_key_press_events(SDL_Event, keys *);
+double get_wall_dist(char **, double_s *, int_s *, int_s *, double_s *, int *,
+		     double_s *, double_s *);
+void check_ray_dir(int_s *, double_s *, double_s, int_s, double_s, double_s);
+void draw(SDL_Instance, char **, double_s, double_s, double_s);
 #endif
