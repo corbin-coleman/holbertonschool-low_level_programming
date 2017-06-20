@@ -10,7 +10,7 @@ void rotate(double_s *plane, double_s *dir, int rot_dir)
 {
 	double rotate_speed, old_dir_x, old_plane_x;
 
-	rotate_speed = 0.2 * rot_dir;
+	rotate_speed = 0.02 * rot_dir;
 	old_dir_x = dir->x;
 	dir->x = dir->x * cos(rotate_speed) - dir->y * sin(rotate_speed);
 	dir->y = old_dir_x * sin(rotate_speed) + dir->y * cos(rotate_speed);
@@ -22,7 +22,7 @@ void rotate(double_s *plane, double_s *dir, int rot_dir)
 void movement(keys key_press, double_s *plane, double_s *dir, double_s *play,
 	      char **map)
 {
-	double move_speed = 1;
+	double move_speed = 0.07;
 
 	if (key_press.right)
 	{
