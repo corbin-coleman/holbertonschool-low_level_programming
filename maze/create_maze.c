@@ -58,27 +58,30 @@ size_t get_char_count(char *line)
 void plot_grid_points(char **maze, double_s *play, int_s *win, size_t cur_char,
 		      size_t maze_line, char *line)
 {
-			if (line[cur_char] == 'p')
-			{
-				play->y = cur_char;
-				play->x = maze_line;
-				maze[maze_line][cur_char] = '0';
-			}
-			else if (line[cur_char] == 'w')
-			{
-				win->y = cur_char;
-				win->x = maze_line;
-				maze[maze_line][cur_char] = '0';
-			}
-			else
-			{
-				if (line[cur_char] == '0')
-				{
-					win->y = cur_char;
-					win->x = maze_line;
-				}
-				maze[maze_line][cur_char] = line[cur_char];
-			}
+	static int win_found = 0;
+
+	if (line[cur_char] == 'p')
+	{
+		play->y = cur_char;
+		play->x = maze_line;
+		maze[maze_line][cur_char] = '0';
+	}
+	else if (line[cur_char] == 'w')
+	{
+		win_found = 1;
+		win->y = cur_char;
+		win->x = maze_line;
+		maze[maze_line][cur_char] = '0';
+	}
+	else
+	{
+		if (line[cur_char] == '0' && win_found == 0)
+		{
+			win->y = cur_char;
+			win->x = maze_line;
+		}
+		maze[maze_line][cur_char] = line[cur_char];
+	}
 }
 
 /**
