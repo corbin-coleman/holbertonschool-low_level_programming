@@ -2,7 +2,13 @@
 
 This repository contains all of the projects done for Holberton School's Low Level Programming track. All of the projects are written in C. The projects follow a styling guide provided for students lovingly known as <a href="https://github.com/holbertonschool/Betty">Betty</a>. All projects are created to run on Ubuntu 14.04 and compiled with the command `gcc -Wall -Wextra -Werror -pedantic`.
 
-### For information on Holberton School look <a href="https://www.holbertonschool.com/">here</a>.
+### For information on Holberton School look <a href="https://www.holbertonschool.com/about">here</a>.
+
+## Projects in Repository
+- <a href="https://github.com/corbin-coleman/holbertonschool-low_level_programming/tree/master/0x00-hello_world">**0x00-hello_world**</a>: Project for learning how to compile C projects on a Linux machine, as well as some basic C program files.
+- <a href="https://github.com/corbin-coleman/holbertonschool-low_level_programming/tree/master/0x01-variables_if_else_while">**0x01-variables_if_else_while**</a>: Project introducing variables, if/else statements, and while loops.
+- <a href="https://github.com/corbin-coleman/holbertonschool-low_level_programming/tree/master/0x02-functions_nested_loops">**0x02-functions_nested_loops**</a>: Project introducing the creation of functions and nested loops.
+- <a href="https://github.com/corbin-coleman/holbertonschool-low_level_programming/tree/master/0x03-more_functions_nested_loops">**0x03-more_functions_nested_loops**</a>: Project with more advanced usage of functions and nested loops.
 
 ## Other projects
 
