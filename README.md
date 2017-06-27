@@ -26,7 +26,7 @@ A basic clone of the AirBnB website written in Python
 ### <a href="https://github.com/corbin-coleman/Call_Me_Moby">Call Me Moby</a>
 A SMS Docker Container Management System (2nd place at a Docker Hackathon 2017)
 
-### <a href="https://github.com/corbin-coleman/tree/master/maze">Maze</a>
+### <a href="https://github.com/corbin-coleman/maze">Maze</a>
 A simple 3D maze written in C using SDL2 and ray casting for graphics
 
 ## Authors
